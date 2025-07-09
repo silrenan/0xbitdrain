@@ -1,0 +1,53 @@
+# ==================================================================================
+# IMPORTANT: This is just an EXAMPLE file!
+# 
+# To use this script, you must create a file named "input.txt" (not input.example)
+# Copy this file and rename it to "input.txt", then add your actual URLs
+# 
+# The script ONLY reads from "input.txt" - it will NOT work with this example file!
+# ==================================================================================
+
+# Example input.txt template
+# This file shows the correct format for your media URLs
+
+# STEP-BY-STEP INSTRUCTIONS:
+# 1. Copy this file and rename it to "input.txt"
+# 2. Replace the example URLs below with your actual media URLs
+# 3. Keep one URL per line
+# 4. Empty lines and lines starting with # are ignored
+# 5. Supports all yt-dlp compatible platforms
+
+# The script looks for a file named "input.txt" in the same directory!
+
+# Supported platforms include:
+# - Instagram (reels, posts, stories)
+# - TikTok (videos)
+# - YouTube (videos, shorts)
+# - Twitter (videos)
+# - Facebook (videos)
+# - And many more...
+
+# Usage examples:
+# Basic: .\download_media.ps1
+# Audio only: .\download_media.ps1 -x
+# With cookies: .\download_media.ps1 -c chrome
+# Combined: .\download_media.ps1 -x -c firefox
+
+# Example URLs (replace these with your actual URLs):
+
+# Instagram reels
+https://www.instagram.com/reel/CxXxXxXxXxX/
+https://www.instagram.com/reel/CyYyYyYyYyY/?igsh=example
+
+# TikTok videos
+# https://www.tiktok.com/@user/video/1234567890
+
+# YouTube videos/shorts
+# https://www.youtube.com/watch?v=dQw4w9WgXcQ
+# https://www.youtube.com/shorts/abc123
+
+# Twitter videos
+# https://twitter.com/user/status/1234567890
+
+# You can mix different platforms in the same file
+# The script will handle them all automatically

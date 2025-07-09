@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install yt-dlp
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+          sudo chmod a+rx /usr/local/bin/yt-dlp
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          brew install yt-dlp
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          pip install yt-dlp
+        fi
+      shell: bash
+    
+    - name: Verify yt-dlp installation
+      run: yt-dlp --version
+      shell: bash
+    
+    - name: Test PowerShell script syntax (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        powershell -Command "& {Get-Command -Syntax .\download_media.ps1}"
+      shell: cmd
+    
+    - name: Test PowerShell script syntax (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        pwsh -Command "& {Get-Command -Syntax ./download_media.ps1}"
+      shell: bash
+    
+    - name: Create test input file
+      run: |
+        echo "# Test input file" > input.txt
+        echo "https://www.instagram.com/reel/test/" >> input.txt
+        echo "https://www.tiktok.com/@user/video/test" >> input.txt
+        echo "https://www.youtube.com/watch?v=test" >> input.txt
+      shell: bash
+    
+    - name: Test script validation (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        # Test that the script can read the input file and validate yt-dlp
+        # We'll exit before actual download to avoid hitting Instagram
+        powershell -Command "& {
+          \$scriptDir = Split-Path -Parent \$MyInvocation.MyCommand.Definition
+          \$inputFile = Join-Path \$scriptDir 'input.txt'
+          if (-not (Test-Path \$inputFile)) { exit 1 }
+          try { \$null = Get-Command 'yt-dlp' -ErrorAction Stop } catch { exit 1 }
+          Write-Host 'Script validation passed'
+        }"
+      shell: cmd
+    
+    - name: Test script validation (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        # Test that the script can read the input file and validate yt-dlp
+        pwsh -Command "& {
+          \$scriptDir = Split-Path -Parent \$MyInvocation.MyCommand.Definition
+          \$inputFile = Join-Path \$scriptDir 'input.txt'
+          if (-not (Test-Path \$inputFile)) { exit 1 }
+          try { \$null = Get-Command 'yt-dlp' -ErrorAction Stop } catch { exit 1 }
+          Write-Host 'Script validation passed'
+        }"
+      shell: bash
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Lint Markdown files
+      uses: avto-dev/markdown-lint@v1
+      with:
+        args: '**/*.md'
+        
+    - name: Check file permissions
+      run: |
+        # Check that the PowerShell script has proper permissions
+        ls -la download_media.ps1

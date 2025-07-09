@@ -1,0 +1,44 @@
+# Ignore PowerShell module files
+*.psm1
+*.psd1
+
+# Ignore log files
+*.log
+*.txt.bak
+
+# Ignore temporary files
+*.tmp
+*.temp
+~$*
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore backup files
+*.bak
+*.backup
+
+# Ignore downloaded content (optional - uncomment if you don't want to track downloads)
+# downloads/
+# *.mp4
+# *.webm
+# *.mkv
+# *.avi
+
+# Ignore personal input files with actual URLs (keep example)
+input.txt
+input.txt.personal
+my_urls.txt
+
+# Ignore test files
+test_*.txt
+debug_*.txt
