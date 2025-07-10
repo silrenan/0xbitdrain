@@ -56,12 +56,21 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         # Test that the script can read the input file and validate yt-dlp
-        # We'll exit before actual download to avoid hitting Instagram
+        # We'll exit before actual download to avoid hitting media platforms
         powershell -Command "& {
-          \$scriptDir = Split-Path -Parent \$MyInvocation.MyCommand.Definition
+          \$scriptDir = Get-Location
           \$inputFile = Join-Path \$scriptDir 'input.txt'
-          if (-not (Test-Path \$inputFile)) { exit 1 }
-          try { \$null = Get-Command 'yt-dlp' -ErrorAction Stop } catch { exit 1 }
+          if (-not (Test-Path \$inputFile)) { 
+            Write-Host 'Error: input.txt not found'
+            exit 1 
+          }
+          try { 
+            \$null = Get-Command 'yt-dlp' -ErrorAction Stop 
+            Write-Host 'yt-dlp found in PATH'
+          } catch { 
+            Write-Host 'Error: yt-dlp not found'
+            exit 1 
+          }
           Write-Host 'Script validation passed'
         }"
       shell: cmd
@@ -71,12 +80,33 @@ jobs:
       run: |
         # Test that the script can read the input file and validate yt-dlp
         pwsh -Command "& {
-          \$scriptDir = Split-Path -Parent \$MyInvocation.MyCommand.Definition
+          \$scriptDir = Get-Location
           \$inputFile = Join-Path \$scriptDir 'input.txt'
-          if (-not (Test-Path \$inputFile)) { exit 1 }
-          try { \$null = Get-Command 'yt-dlp' -ErrorAction Stop } catch { exit 1 }
+          if (-not (Test-Path \$inputFile)) { 
+            Write-Host 'Error: input.txt not found'
+            exit 1 
+          }
+          try { 
+            \$null = Get-Command 'yt-dlp' -ErrorAction Stop 
+            Write-Host 'yt-dlp found in PATH'
+          } catch { 
+            Write-Host 'Error: yt-dlp not found'
+            exit 1 
+          }
           Write-Host 'Script validation passed'
         }"
+      shell: bash
+    
+    - name: Test script help function (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        powershell -Command "& {.\download_media.ps1 -h}"
+      shell: cmd
+    
+    - name: Test script help function (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        pwsh -Command "& {./download_media.ps1 -h}"
       shell: bash
 
   lint:
