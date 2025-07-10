@@ -1,3 +1,5 @@
+[![CI](https://github.com/silrenan/0xbitdrain/actions/workflows/ci.yml/badge.svg)](https://github.com/silrenan/0xbitdrain/actions/workflows/ci.yml)
+
 # Media Content Downloader
 
 A PowerShell script to download media content from various platforms using yt-dlp. This tool reads URLs from a text file and downloads them to your Desktop.
