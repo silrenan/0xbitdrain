@@ -1,4 +1,5 @@
 [![CI](https://github.com/silrenan/0xbitdrain/actions/workflows/ci.yml/badge.svg)](https://github.com/silrenan/0xbitdrain/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/silrenan/0xbitdrain/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/silrenan/0xbitdrain/actions/workflows/github-code-scanning/codeql)
 
 # Media Content Downloader
 
