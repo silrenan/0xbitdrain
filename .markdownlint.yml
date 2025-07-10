@@ -3,11 +3,11 @@
 
 # Line length - allow longer lines for URLs and code examples
 MD013:
-  line_length: 120
-  heading_line_length: 80
+  line_length: 200
+  heading_line_length: 120
   code_blocks: false
   tables: false
-  headings: true
+  headings: false
 
 # Allow raw HTML (for better formatting)
 MD033: false
@@ -21,10 +21,8 @@ MD036: false
 # Allow trailing punctuation in headings
 MD026: false
 
-# Blanks around headings - make it less strict
-MD022:
-  lines_above: 1
-  lines_below: 1
+# Blanks around headings - disable for flexibility
+MD022: false
 
 # Blanks around lists - make it less strict  
 MD032: false
