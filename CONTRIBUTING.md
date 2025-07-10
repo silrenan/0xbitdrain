@@ -1,6 +1,7 @@
 # Contributing to Media Content Downloader
 
-Thank you for considering contributing to the Media Content Downloader project! We welcome contributions from the community.
+Thank you for considering contributing to the Media Content Downloader
+project! We welcome contributions from the community.
 
 ## How to Contribute
 

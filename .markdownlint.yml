@@ -1,0 +1,42 @@
+# Markdown lint configuration
+# Relaxed rules for better usability
+
+# Line length - allow longer lines for URLs and code examples
+MD013:
+  line_length: 120
+  heading_line_length: 80
+  code_blocks: false
+  tables: false
+  headings: true
+
+# Allow raw HTML (for better formatting)
+MD033: false
+
+# Allow duplicate headings (common in changelogs)
+MD024: false
+
+# Allow emphasis as headings (useful for emphasis)
+MD036: false
+
+# Allow trailing punctuation in headings
+MD026: false
+
+# Blanks around headings - make it less strict
+MD022:
+  lines_above: 1
+  lines_below: 1
+
+# Blanks around lists - make it less strict  
+MD032: false
+
+# Blanks around fences - make it less strict
+MD031: false
+
+# Ordered list prefixes - allow different styles
+MD029: false
+
+# First line heading - not always needed
+MD041: false
+
+# Fenced code language - not always needed for examples
+MD040: false

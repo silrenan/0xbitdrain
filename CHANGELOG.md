@@ -8,17 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Command line parameters support
 - `-x` flag for audio extraction only
 - `-c` parameter for browser cookies support
 - Enhanced usage examples and documentation
 
 ### Changed
+
 - Updated author information to silrenan
 - Changed license to Unlicense
 - Updated repository references to silrenan/0xbitdrain
 
 ### Features
+
 - Batch download multiple media files from supported platforms
 - Automatic file naming using content titles
 - Desktop destination for downloaded files
@@ -28,9 +31,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2025-07-09
 
-### Added
+### Initial Release
+
 - Initial working version of the script
 - README with installation and usage instructions
-- MIT License
+- Unlicense
 - Contributing guidelines
 - Example input.txt template
